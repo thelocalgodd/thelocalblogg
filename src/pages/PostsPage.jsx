@@ -7,7 +7,7 @@ const PostsPage = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const url = "http://localhost:3002/api/posts";
+      const url = "https://thelocalblogg-api.onrender.com/api/posts";
 
       try {
         const response = await fetch(url);
