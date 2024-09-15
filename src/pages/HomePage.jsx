@@ -91,7 +91,7 @@ export default function HomePage() {
   return (
     <BaseLayout>
       <main className="max-w-3xl mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">Create a New Post</h1>
+        <h1 className="text-2xl font-bold mb-4">create a new post</h1>
         <input
           type="text"
           name="title"
