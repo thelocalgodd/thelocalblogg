@@ -35,7 +35,7 @@
   },
   "git": {
     "scripts": {
-      "pre-push": "npx surge --project ./dist --domain unbecoming-stove.surge.sh"
+      "pre-push": "npm run build && npx surge --project ./dist --domain unbecoming-stove.surge.sh"
     }
   }
 }
