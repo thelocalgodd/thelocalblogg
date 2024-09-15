@@ -1,51 +1,61 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+# Workflow for deploying thelocalblogg to GitHub Pages
+name: Deploy thelocalblogg to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Trigger the workflow on push to the main branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+  # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
-# Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
+# Set permissions for GITHUB_TOKEN
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow one concurrent deployment
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      # Check out the repository
       - name: Checkout
         uses: actions/checkout@v4
+
+      # Set up Node.js environment
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "npm"
+
+      # Install project dependencies
       - name: Install dependencies
         run: npm ci
-      - name: Build
+
+      # Build the project
+      - name: Build thelocalblogg
         run: npm run build
+
+      # Configure GitHub Pages
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
+      # Upload the built files as an artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload dist folder
-          path: "./dist"
+          path: "./dist" # Assuming the build output is in the dist folder
+
+      # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
