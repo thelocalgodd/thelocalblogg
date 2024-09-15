@@ -6,7 +6,7 @@ import "../index.css";
 
 const BaseLayout = ({ children }) => {
   return (
-    <div className="mx-4 md:w-[600px] md:mx-auto">
+    <div className="mx-4 md:w-[602px] md:mx-auto">
       {/* header */}
       <Header />
 
